@@ -11,14 +11,12 @@ $sql = "CREATE DATABASE IF NOT EXISTS $table_name";
 
 if(mysqli_query($con,$sql)){
     mysqli_select_db($con,$table_name);
-    $sql = "CREATE TABLE IF NOT EXISTS $column_table_name (`id` INT NOT NULL AUTO_INCREMENT,`name` VARCHAR(255) NOT NULL DEFAULT '',`product` VARCHAR(255) NOT NULL DEFAULT '',`price` DOUBLE NOT NULL DEFAULT 0.0, PRIMARY KEY (`id`)) ENGINE = InnoDB";
+    $sql = "CREATE TABLE IF NOT EXISTS $column_table_name (`id` INT NOT NULL AUTO_INCREMENT,`name` VARCHAR(255) NOT NULL DEFAULT '',`qty` INT default 1,`product` VARCHAR(255) NOT NULL DEFAULT '',`price` DOUBLE NOT NULL DEFAULT 0.0,`image` VARCHAR(255) DEFAULT '', PRIMARY KEY (`id`)) ENGINE = InnoDB";
     mysqli_query($con,$sql);
 }
 
 if(isset($_POST['SALVAR'])){
     $name = $_POST['name'];
-    $sql = "INSERT INTO $column_table_name(name) VALUES ('$name')";
-    mysqli_query($con,$sql);
     $result_id = mysqli_insert_id($con);
     mysqli_select_db($con,'mesas');
     mysqli_query($con,"INSERT INTO mesas(nome,id,cor) VALUES ('$name',$table_id,1)");
@@ -41,16 +39,17 @@ if(isset($_POST['SALVAR'])){
         <nav>
             <ul class="nav_links">
                 <li><a href="#">Fechamento</a></li>
-                <li><a href="#">Mesas</a></li>
+                <li><a href="/comandas/Comanda_PHP/index.php">Mesas</a></li>
                 <li><a href="#">Admin</a></li>
             </ul>
         </nav>
         <form method="POST" action="tables.php?id=<?php echo $table_id ?>">
         <?php
-        $run = mysqli_query($con,"SELECT name FROM $column_table_name");
+        mysqli_select_db($con,'mesas');
+        $run = mysqli_query($con,"SELECT nome FROM mesas WHERE id = $table_id");
         $result = mysqli_fetch_assoc($run);
-        if(isset($result['name'])){
-            echo "<h1 class='name_h1'> Nome atual:".$result['name']."</h1>";
+        if(isset($result['nome'])){
+            echo "<h1 class='name_h1'> Nome atual:".$result['nome']."</h1>";
             echo "<button class='button_name'> <a href='modify_name.php?id='".$table_id.">Modificar</a></button>";
         }  else {
             echo "<h1 class='name_h1' >Deseja adicionar um nome?</h1>";
@@ -67,35 +66,27 @@ if(isset($_POST['SALVAR'])){
         <div class="itens-display-group">
                 <div class="menu">
                     <div class="menu-image">
-                        <img src="imgs/fundieburguer.png" class="img">
                         <div class="img-header">
-                            <span class="iten-name">FONDUE BURGUER</span>
-                            <san class="item-price">200000</span>
+                            <?php 
+                            mysqli_select_db($con,$table_name);
+                            $run = mysqli_query($con,"SELECT product, price,qty,image FROM $column_table_name");
+    
+                            while ($result = mysqli_fetch_assoc($run)) {
+                            ?>
+                            <div class="product-block">
+                                <img src="<?php echo $result['image']; ?>" class="product-image">
+                                <div class="product-details">
+                                    <span class="iten-name"><?php echo $result['product']; ?></span>
+                                    <span class="item-qty"><?php echo $result['qty']; ?> </span>
+                                    <span class="item-price"><?php if($result['price'] == 0){}else{echo $result['price'];} ?></span>
+                                </div>
+                            </div>
+                            <?php
+                            }
+                            ?>
                         </div>
-                    </div>
-                    <div class="menu-image">
-                        <img src="imgs/fundieburguer.png" class="img">
-                        <div class="img-header">
-                            <span class="iten-name"><?php mysqli_select_db($con,$table_name);
-                            $run = mysqli_query($con,"SELECT product FROM $column_table_name");
-                            $result = mysqli_fetch_assoc($run);
-                            if($result['product']){
-                                echo $result['product'];
-                            } ?></span>
-                            <san class="item-price"><?php mysqli_select_db($con,$table_name);
-                            $run = mysqli_query($con,"SELECT price FROM $column_table_name");
-                            $result = mysqli_fetch_assoc($run);
-                            if($result['price']){
-                                echo $result['price'];
-                            } ?></span></span>
-                        </div>
-                    </div>
-                    <div class="menu-image">
-                        <img src="imgs/fundieburguer.png" class="img">
-                        <div class="img-header">
-                            <span class="iten-name">FONDUE BURGUER</span>
-                            <san class="item-price">200000</span>
-                        </div>
+
+
                     </div>
         </div>
     </div>

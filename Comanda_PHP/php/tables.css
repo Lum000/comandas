@@ -115,5 +115,9 @@ form{
 }
 .item-price{
     font-size: 32px;
+    display: inline-block;
     padding-left: 520px;
+}
+.product{
+
 }

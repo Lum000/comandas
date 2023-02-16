@@ -36,7 +36,7 @@ echo '</style>';
         <nav>
             <ul class="nav_links">
                 <li><a href="#">Fechamento</a></li>
-                <li><a href="#">Mesas</a></li>
+                <li><a href="index.php">Mesas</a></li>
                 <li><a href="#">Admin</a></li>
             </ul>
         </nav>
@@ -72,7 +72,7 @@ echo '</style>';
                 <h2>2</h2>
             </div>
         </div>
-        <div class="tables table-color" data-id='3'>
+        <div class="tables table-color" data-id='3' onclick="window.location.href='php/tables.php?id=3'">
             <div class="table1">
                 <div class="name">
                 <?php
@@ -89,30 +89,15 @@ echo '</style>';
                 <h2>3</h2>
             </div>
         </div>
-        <div class="tables table-color" data-id='4'>
+        <div class="tables table-color" data-id='4' onclick="window.location.href='php/tables.php?id=4'">
             <div class="name">
                 <h1></h1>
-<<<<<<< HEAD
-=======
             </div>
             <div class="number">
                 <h2>4</h2>
             </div>
         </div>
-        <div class="tables table-color" data-id='5'>
-            <div class="name">
-                <h1>lucas</h1>
->>>>>>> e453b86a2f2565f1d54d6b423239f4d178a60495
-            </div>
-            <div class="number">
-                <h2>4</h2>
-            </div>
-        </div>
-<<<<<<< HEAD
-        <div class="tables table-color" data-id='5'>
-=======
-        <div class="tables table-color" data-id='6'>
->>>>>>> e453b86a2f2565f1d54d6b423239f4d178a60495
+        <div class="tables table-color" data-id='5' onclick="window.location.href='php/tables.php?id=5'">
             <div class="name">
                 <h1></h1>
             </div>
@@ -120,7 +105,7 @@ echo '</style>';
                 <h2>5</h2>
             </div>
         </div>
-        <div class="tables table-color" data-id='6'>
+        <div class="tables table-color" data-id='6' onclick="window.location.href='php/tables.php?id=6'">
             <div class="name">
                 <h1></h1>
             </div>
