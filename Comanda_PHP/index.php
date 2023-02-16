@@ -4,6 +4,21 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 include_once('php/connect.php');
+$ids = array();
+mysqli_select_db($con, 'mesas');
+$run = mysqli_query($con, "SELECT id FROM mesas WHERE nome != ''");
+while ($row = mysqli_fetch_assoc($run)) {
+    $ids[] = $row['id'];
+}
+$id_string = implode(',', $ids);
+$cor = 'blue'; /* ou qualquer outra cor que desejar */
+echo '<style>';
+echo '.table-color[data-id="' . implode('"], .table-color[data-id="', $ids) . '"] {';
+echo 'background-color: ' . $cor . ';';
+echo '}';
+echo '</style>';
+
+
 ?>
 
 
@@ -27,7 +42,7 @@ include_once('php/connect.php');
         </nav>
     </header>
     <div class="container-mid">
-        <div class="tables" onclick="window.location.href='php/tables.php?id=1'">
+        <div class="tables table-color" data-id='1' onclick="window.location.href='php/tables.php?id=1'">
             <div class="name">
                 <?php
                 mysqli_select_db($con,'mesas');
@@ -42,7 +57,7 @@ include_once('php/connect.php');
                 <h2>1</h2>
             </div>
         </div>
-        <div class="tables" onclick="window.location.href='php/tables.php?id=2'">
+        <div class="tables table-color" data-id='2' onclick="window.location.href='php/tables.php?id=2'">
             <div class="name">
             <?php
                 mysqli_select_db($con,'mesas');
@@ -57,7 +72,7 @@ include_once('php/connect.php');
                 <h2>2</h2>
             </div>
         </div>
-        <div class="tables">
+        <div class="tables table-color" data-id='3'>
             <div class="table1">
                 <div class="name">
                 <?php
@@ -74,15 +89,15 @@ include_once('php/connect.php');
                 <h2>3</h2>
             </div>
         </div>
-        <div class="tables">
+        <div class="tables table-color" data-id='4'>
             <div class="name">
-                <h1>lucas</h1>
+                <h1></h1>
             </div>
             <div class="number">
-                <h2>3</h2>
+                <h2>4</h2>
             </div>
         </div>
-        <div class="tables">
+        <div class="tables table-color" data-id='5'>
             <div class="name">
                 <h1>lucas</h1>
             </div>
@@ -90,7 +105,7 @@ include_once('php/connect.php');
                 <h2>4</h2>
             </div>
         </div>
-        <div class="tables">
+        <div class="tables table-color" data-id='6'>
             <div class="name">
                 <h1>lucas</h1>
             </div>
