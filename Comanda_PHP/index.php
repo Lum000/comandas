@@ -92,12 +92,27 @@ echo '</style>';
         <div class="tables table-color" data-id='4'>
             <div class="name">
                 <h1></h1>
+<<<<<<< HEAD
+=======
             </div>
             <div class="number">
                 <h2>4</h2>
             </div>
         </div>
         <div class="tables table-color" data-id='5'>
+            <div class="name">
+                <h1>lucas</h1>
+>>>>>>> e453b86a2f2565f1d54d6b423239f4d178a60495
+            </div>
+            <div class="number">
+                <h2>4</h2>
+            </div>
+        </div>
+<<<<<<< HEAD
+        <div class="tables table-color" data-id='5'>
+=======
+        <div class="tables table-color" data-id='6'>
+>>>>>>> e453b86a2f2565f1d54d6b423239f4d178a60495
             <div class="name">
                 <h1></h1>
             </div>
