@@ -110,7 +110,12 @@ form{
     border-bottom: 2px solid black;
 }
 .iten-name{
+<<<<<<< HEAD
     font-size: 322px;
+=======
+    justify-content: start;
+    font-size: 32px;
+>>>>>>> fb894ac9949a96776b66b812cfcbc3b0a8ed106a
 }
 .item-price{
     font-size: 32px;
