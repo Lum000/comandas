@@ -20,6 +20,7 @@ header{
     background-color: rgba(0, 0, 0, 0.579);
     box-shadow: -5px 19px 31px 31px rgba(28,4,4,0.68);
 }
+.table-color
 li,a{
     font-family: 'Work Sans', sans-serif;
     font-weight: 500;

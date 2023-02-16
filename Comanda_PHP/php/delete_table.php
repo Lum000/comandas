@@ -9,7 +9,7 @@ if($table_id > 0){
         mysqli_select_db($con,'mesas');
         $run = mysqli_query($con,"DELETE FROM mesas WHERE id = $table_id");
         if($run){
-            header('location:/Comanda_PHP/index.php');
+            header('location:/comandas/Comanda_PHP/index.php');
         }
     }
 

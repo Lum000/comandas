@@ -28,29 +28,77 @@ if(isset($_POST['SALVAR'])){
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/tables.css" rel="stylesheet">
+    <link href="tables.css" rel="stylesheet">
     <title>Mesas</title>
 </head>
 <body> 
-    <form method="POST" action="tables.php?id=<?php echo $table_id ?>">
-    <?php
-    $run = mysqli_query($con,"SELECT name FROM $column_table_name");
-    $result = mysqli_fetch_assoc($run);
-    if(isset($result['name'])){
-        echo "<h1 class='name_h1'> Nome atual:".$result['name']."</h1>";
-        echo "<button class='button_name'> <a href='modify_name.php?id='".$table_id.">Modificar</a></button>";
-    }  else {
-        echo "<h1 class='name_h1' >Deseja adicionar um nome?</h1>";
-        echo "<input class='input_text' type='text' name='name'>";
-        echo "<input class='input_submit' type='submit' name='SALVAR' value='SALVAR'>";
-      }  
-    ?>
-    <button><a href="delete_table.php?id=<?php echo $table_id ?>">deletar</a></button>
+<header>
+        <nav>
+            <ul class="nav_links">
+                <li><a href="#">Fechamento</a></li>
+                <li><a href="#">Mesas</a></li>
+                <li><a href="#">Admin</a></li>
+            </ul>
+        </nav>
+        <form method="POST" action="tables.php?id=<?php echo $table_id ?>">
+        <?php
+        $run = mysqli_query($con,"SELECT name FROM $column_table_name");
+        $result = mysqli_fetch_assoc($run);
+        if(isset($result['name'])){
+            echo "<h1 class='name_h1'> Nome atual:".$result['name']."</h1>";
+            echo "<button class='button_name'> <a href='modify_name.php?id='".$table_id.">Modificar</a></button>";
+        }  else {
+            echo "<h1 class='name_h1' >Deseja adicionar um nome?</h1>";
+            echo "<input class='input_text' type='text' name='name'>";
+            echo "<input class='input_submit' type='submit' name='SALVAR' value='SALVAR'>";
+        }  
+        ?>
+        <div class="button-div">
+            <button class="button_delete"><a href="delete_table.php?id=<?php echo $table_id ?>">deletar</a></button>
+        </div>
+    </header>
+
+    <div class="container-mid">
+        <div class="itens-display-group">
+                <div class="menu">
+                    <div class="menu-image">
+                        <img src="imgs/fundieburguer.png" class="img">
+                        <div class="img-header">
+                            <span class="iten-name">FONDUE BURGUER</span>
+                            <san class="item-price">200000</span>
+                        </div>
+                    </div>
+                    <div class="menu-image">
+                        <img src="imgs/fundieburguer.png" class="img">
+                        <div class="img-header">
+                            <span class="iten-name"><?php mysqli_select_db($con,$table_name);
+                            $run = mysqli_query($con,"SELECT product FROM $column_table_name");
+                            $result = mysqli_fetch_assoc($run);
+                            if($result['product']){
+                                echo $result['product'];
+                            } ?></span>
+                            <san class="item-price"><?php mysqli_select_db($con,$table_name);
+                            $run = mysqli_query($con,"SELECT price FROM $column_table_name");
+                            $result = mysqli_fetch_assoc($run);
+                            if($result['price']){
+                                echo $result['price'];
+                            } ?></span></span>
+                        </div>
+                    </div>
+                    <div class="menu-image">
+                        <img src="imgs/fundieburguer.png" class="img">
+                        <div class="img-header">
+                            <span class="iten-name">FONDUE BURGUER</span>
+                            <san class="item-price">200000</span>
+                        </div>
+                    </div>
+        </div>
+    </div>
 </body>
 <script>
 
