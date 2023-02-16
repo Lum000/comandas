@@ -99,21 +99,39 @@ form{
     padding-top: 15px;
     display: inline-flex;
 }
+.rotulos{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+}
 .img-header{
     padding: 30px;
     flex-grow: 1;
+    padding-bottom: 15px;
     font-family: 'Work Sans', sans-serif;
 }
 .menu-heading{
     margin: 0;
-    padding-bottom: 1em;
+    padding-bottom: 1rem;
     border-bottom: 2px solid black;
 }
 .iten-name{
-    font-size:200px;
+    font-size:22px;
+}
+.product-details{
+    display: grid;
+    grid-template-columns: 400px 200px 500px;
+    padding-top: 35px;
 }
 .item-price{
+    text-align: center;
     font-size: 32px;
-    display: inline-block;
-    padding-left: 520px;
+}
+.product-block{
+    display: flex;
+    padding-top: 15px ;
+    margin-right: 3.5rem;
+}
+.item-qty{
+    font-size: 32px;
+    margin-left: 5rem;
 }

@@ -65,11 +65,16 @@ if(isset($_POST['SALVAR'])){
     <div class="container-mid">
         <div class="itens-display-group">
                 <div class="menu">
+                    <div class="rotulos">
+                            <h1>PRODUTO</h1>
+                            <h1>QUANTIDADE</h1>
+                            <h1>VALOR</h1>
+                    </div>
                     <div class="menu-image">
                         <div class="img-header">
                             <?php 
                             mysqli_select_db($con,$table_name);
-                            $run = mysqli_query($con,"SELECT product, price,qty,image FROM $column_table_name");
+                            $run = mysqli_query($con,"SELECT product,price,qty,image FROM $column_table_name");
     
                             while ($result = mysqli_fetch_assoc($run)) {
                             ?>
