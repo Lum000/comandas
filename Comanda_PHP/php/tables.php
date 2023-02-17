@@ -88,7 +88,7 @@ if(isset($_POST['SALVAR'])){
                             <?php
                             }
                             ?>
-                        <button class="add_button"><a href="#">ola</a></button>
+                        <button class="add_button">ola</button>
                         </div>
 
 
