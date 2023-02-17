@@ -135,3 +135,6 @@ form{
     font-size: 32px;
     margin-left: 5rem;
 }
+.add_button a{
+    color: red;
+}

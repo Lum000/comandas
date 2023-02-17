@@ -22,7 +22,6 @@ if(isset($_POST['SALVAR'])){
     mysqli_query($con,"INSERT INTO mesas(nome,id,cor) VALUES ('$name',$table_id,1)");
     mysqli_select_db($con,$table_name);
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -89,6 +88,7 @@ if(isset($_POST['SALVAR'])){
                             <?php
                             }
                             ?>
+                        <button class="add_button"><a href="#">ola</a></button>
                         </div>
 
 
