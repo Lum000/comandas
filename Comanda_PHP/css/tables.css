@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    word-wrap: break-word;
+}
+
+body{
+    background-color: rgba(26, 23, 23, 0.771);
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.579);
+    box-shadow: -5px 19px 31px 31px rgba(28,4,4,0.68);
+}
+li,a{
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 500;
+    font-size: 1,5rem;
+    color: white;
+    text-decoration: none;
+}
+.nav_links{
+    list-style: none;
+}
+
+.nav_links li{
+    display: inline-block;
+    padding: 20px;
+}
+h1{
+    color: white;
+}
+.button_delete a{
+    color: white;
+    font-size: 22px;
+    padding: 5px;
+}
+.button_delete a:hover{
+    font-size: 30px;
+    transition: 0.5s;
+}
+form{
+    justify-content: space-between;
+}
+.button_delete{
+    background: none;
+    padding: 10px;
+    border: 0.2px solid black;
+}
+.button_name{
+    background: none;
+    padding: 10px;
+    border: 0.2px solid black;
+}
+.button_name a{
+    color: white;
+    font-size: 22px;
+    padding: 5px;
+}
+.button_name a:hover{
+    font-size: 30px;
+    transition: 0.5s;
+}
+.button-div{
+    padding: 20px;
+    display: inline-flex;
+}
+.container-mid{
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.itens-display-group{
+    display: flex;
+    padding: 30px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.img{
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+    object-fit: cover;
+    margin-right: 1.5em;
+}
+.menu-image{
+    border-right: 3px solid black;
+    background-color: rgba(255, 255, 255, 0.384);
+    width: 1200px;
+    padding-top: 15px;
+    display: inline-flex;
+}
+.rotulos{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+}
+.img-header{
+    padding: 30px;
+    flex-grow: 1;
+    padding-bottom: 15px;
+    font-family: 'Work Sans', sans-serif;
+}
+.menu-heading{
+    margin: 0;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid black;
+}
+.iten-name{
+    font-size:22px;
+}
+.product-details{
+    display: grid;
+    grid-template-columns: 400px 200px 500px;
+    padding-top: 35px;
+}
+.item-price{
+    text-align: center;
+    font-size: 32px;
+}
+.product-block{
+    display: flex;
+    padding-top: 15px ;
+    margin-right: 3.5rem;
+}
+.item-qty{
+    font-size: 32px;
+    margin-left: 5rem;
+}
+.add_button a{
+    font-style: bold;
+    color: black;
+}
+.add_button{
+    background: none;
+    font-size: 22px;
+    padding: 10px;
+    border: 0.5px solid black;
+}
+.add_button:hover{
+    font-size: 26px;
+    transition: 0.5s;
+    border: 2px solid black;
+}

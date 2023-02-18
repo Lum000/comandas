@@ -116,9 +116,9 @@ form{
 .iten-name{
     font-size:22px;
 }
-.product-details{
+.product-form{
     display: grid;
-    grid-template-columns: 400px 200px 500px;
+    grid-template-columns: 400px 200px 2fr;
     padding-top: 35px;
 }
 .item-price{
@@ -134,7 +134,18 @@ form{
     font-size: 32px;
     margin-left: 5rem;
 }
+.add_button a{
+    font-style: bold;
+    color: black;
+}
 .add_button{
-    color: red;
-    border: 2px solid red;
+    background: none;
+    font-size: 22px;
+    padding: 10px;
+    border: 0.5px solid black;
+}
+.add_button:hover{
+    font-size: 26px;
+    transition: 0.5s;
+    border: 2px solid black;
 }
