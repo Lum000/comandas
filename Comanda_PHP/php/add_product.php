@@ -5,7 +5,6 @@ mysqli_select_db($con,'produtos');
 $run = mysqli_query($con,"SELECT * FROM products");
 $result = mysqli_fetch_assoc($run);
 
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -25,7 +24,7 @@ $result = mysqli_fetch_assoc($run);
                 <li><a href="#">Admin</a></li>
             </ul>
         </nav>
-        <form method="POST" action="tables.php?id=<?php echo $table_id ?>">
+
         <div class="button-div">
             <button class="button_delete"><a href="delete_table.php?id=<?php echo $table_id ?>">deletar</a></button>
         </div>
@@ -39,26 +38,23 @@ $result = mysqli_fetch_assoc($run);
                             <?php 
                             mysqli_select_db($con,'produtos');
                             $run = mysqli_query($con,"SELECT * FROM products");
-    
-                            while ($result = mysqli_fetch_assoc($run)) {
-                            ?>
-                            <div class="product-block">
-                                <img src="<?php echo $result['image']; ?>" class="product-image">
-                                <div class="product-details">
-                                    <form class="product-form" action="add.php">
-                                        <span class="iten-name"><?php echo $result['product']; ?></span>
-                                        <span class="item-price"><?php if($result['price'] == 0){}else{echo $result['price'];} ?></span>
-                                        <input type="hidden" id="<?php echo $result['id'] ?>">
-                                        <input type="submit" value="ADICIONAR">
-                                    </form>
-                                </div>
-                            </div>
-                            <?php
+                            while ($row = mysqli_fetch_assoc($run)) {
+                                echo "<div class='product-block'>";
+                                echo "<img src='" . $row['image'] . "' class='product-image'>";
+                                echo "<div class='product-details'>";
+                                echo "<span>" . $row['id'] . "</span>";
+                                echo '<form id="product-form-' . $row['id'] . '" class="product-form" action="add.php" method="POST">';
+                                echo "<span class='item-name'>" . $row['product'] . "</span>";
+                                echo "<span class='item-price'>" . $row['price'] . "</span>";
+                                echo "<input type='hidden' name='product-id' value='" . $row['id'] . "'>";
+                                echo '<button type="submit" form="product-form-' . $row['id'] . '">ADICIONAR</button>';
+                                echo "</form>";
+                                echo "</div>";
+                                echo "</div>";
                             }
+                            
                             ?>
                         </div>
-
-
                     </div>
         </div>
     </div>
