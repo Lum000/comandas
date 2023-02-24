@@ -36,14 +36,22 @@ li,a{
 h1{
     color: white;
 }
+.total{
+    color: black;
+}
+h3{
+    display: block;
+    padding-right: 300px;
+    text-align: right;    
+}
 .button_delete a{
     color: white;
-    font-size: 22px;
+    font-size: 25px;
     padding: 5px;
 }
 .button_delete a:hover{
     font-size: 30px;
-    transition: 0.5s;
+    transition: 0.2s;
 }
 form{
     justify-content: space-between;
@@ -94,6 +102,7 @@ form{
 .menu-image{
     border-right: 3px solid black;
     background-color: rgba(255, 255, 255, 0.384);
+    box-shadow: 10px 10px 117px 0px rgba(0,0,0,0.82);
     width: 1200px;
     padding-top: 15px;
     display: inline-flex;
@@ -115,6 +124,8 @@ form{
 }
 .iten-name{
     font-size:22px;
+    font-style: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .product-details{
     display: grid;
@@ -123,7 +134,7 @@ form{
 }
 .item-price{
     text-align: center;
-    font-size: 32px;
+    font-size: 25px;
 }
 .product-block{
     display: flex;
@@ -131,9 +142,32 @@ form{
     margin-right: 3.5rem;
 }
 .item-qty{
-    font-size: 32px;
+    font-size: 25px;
     margin-left: 5rem;
 }
+.close_comand_button{
+    background: none;
+    font-size: 22px;
+    padding: 10px;
+    border: 0.5px solid black;
+}
+.close_comand_button a{
+    font-style: bold;
+    color: black;
+}
+.close_comand_button:hover{
+    font-size: 26px;
+    transition: 0.2s;
+    border: 2px solid black;
+}
+.buttons{
+    padding: 25px;
+    justify-content: space-between;
+    display: flex;
+    padding-left: 320px;
+    padding-right: 320px;
+}
+
 .add_button a{
     font-style: bold;
     color: black;
@@ -146,6 +180,36 @@ form{
 }
 .add_button:hover{
     font-size: 26px;
-    transition: 0.5s;
+    transition: 0.2s;
     border: 2px solid black;
+}
+.button_total{
+    display: inline-flex;
+    justify-content: space-between;
+}
+.total{
+    text-align: right;
+    width: 1100px;
+    color: black;
+}
+.input_submit{
+    background: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 25px;
+    border: 0.2px solid black;
+    color: white;
+}
+.input_submit:hover{
+    font-size:30px;
+    transition: 0.2s;
+}
+.inputs{
+    display: inline-block;
+    justify-content: space-between;
+    padding: 15px;
+}
+.input_text{
+    background: none;
+    font-size: 15px;
 }

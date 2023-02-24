@@ -36,22 +36,42 @@ li,a{
 h1{
     color: white;
 }
-.button_delete a{
-    color: white;
-    font-size: 22px;
-    padding: 5px;
-}
-.button_delete a:hover{
-    font-size: 30px;
-    transition: 0.5s;
-}
 form{
-    justify-content: space-between;
+    display: grid;
+    justify-content: center;
+    padding: 50px;
 }
-.button_delete{
+.input_valor{
+    padding: 10px;
+    width: 200px;
+}
+.input_paid{
+    padding: 10px;
+    width: 200px;
+}
+.input_valor::placeholder{
+    font-size: 11px;
+}
+button a{
+    color: black;
+}
+button{
     background: none;
     padding: 10px;
-    border: 0.2px solid black;
+    cursor: pointer;
+    border: 1px solid black;
+}
+.button{
+    padding: 10px;
+}
+.submit{
+    cursor: pointer;
+    background: none;
+    padding: 10px;
+    border: 1px solid black;
+}
+.input_number{
+    padding: 10px;
 }
 .button_name{
     background: none;
@@ -114,64 +134,13 @@ form{
     padding-bottom: 1rem;
     border-bottom: 2px solid black;
 }
-.item-name{
-    font-size:22px;
-    font-style: bold;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
 .product-form{
     display: grid;
     grid-template-columns: 400px 200px 2fr;
     padding-top: 35px;
 }
-.item-price{
-    text-align: center;
-    font-size: 26px;
-}
 .product-block{
     display: flex;
     padding-top: 15px ;
     margin-right: 3.5rem;
-}
-.item-qty{
-    font-size: 32px;
-    margin-left: 5rem;
-}
-.add_button a{
-    font-style: bold;
-    color: black;
-}
-.add_button{
-    background: none;
-    font-size: 22px;
-    padding: 10px;
-    border: 0.5px solid black;
-}
-.add_button:hover{
-    font-size: 26px;
-    transition: 0.5s;
-    border: 2px solid black;
-}
-.btn{
-    background-color: rgba(255, 255, 255, 0.27) ;
-    padding: 10px;
-    border: 0.5px solid black;
-    font-family: inherit;
-    cursor: pointer;
-}
-.btn:hover{
-    padding: 15px;
-    border: 2px solid black;
-    border-bottom: 2px solid red;
-    transition: 0.2s;
-
-}
-.label{
-    padding-right: 200px;
-    display: inline-flex;
-    justify-content: space-between;
-}
-.label h1{
-    padding-left:150px;
-    color: black;
 }

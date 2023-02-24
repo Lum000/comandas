@@ -4,6 +4,7 @@ include_once('connect.php');
 mysqli_select_db($con,'produtos');
 $run = mysqli_query($con,"SELECT * FROM products");
 $result = mysqli_fetch_assoc($run);
+$table_id = $_GET['id'];
 
 ?>
 <!DOCTYPE html>
@@ -35,6 +36,10 @@ $result = mysqli_fetch_assoc($run);
                 <div class="menu">
                     <div class="menu-image">
                         <div class="img-header">
+                            <div class='label'>
+                                <h1>PRODUTO </h1>
+                                <h1>VALOR </h1>
+                            </div>
                             <?php 
                             mysqli_select_db($con,'produtos');
                             $run = mysqli_query($con,"SELECT * FROM products");
@@ -42,12 +47,12 @@ $result = mysqli_fetch_assoc($run);
                                 echo "<div class='product-block'>";
                                 echo "<img src='" . $row['image'] . "' class='product-image'>";
                                 echo "<div class='product-details'>";
-                                echo "<span>" . $row['id'] . "</span>";
                                 echo '<form id="product-form-' . $row['id'] . '" class="product-form" action="add.php" method="POST">';
                                 echo "<span class='item-name'>" . $row['product'] . "</span>";
                                 echo "<span class='item-price'>" . $row['price'] . "</span>";
                                 echo "<input type='hidden' name='product-id' value='" . $row['id'] . "'>";
-                                echo '<button type="submit" form="product-form-' . $row['id'] . '">ADICIONAR</button>';
+                                echo "<input type='hidden' name='table-id' value='" .$table_id ."'>";
+                                echo '<button type="submit" class="btn" form="product-form-' . $row['id'] . '">ADICIONAR</button>';
                                 echo "</form>";
                                 echo "</div>";
                                 echo "</div>";
