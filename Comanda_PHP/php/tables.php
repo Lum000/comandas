@@ -105,40 +105,41 @@ if($result){
     </header>
 
     <div class="container-mid">
-        <div class="itens-display-group">
-                <div class="menu">
-                    <div class="rotulos">
-                            <h1>PRODUTO</h1>
-                            <h1>QUANTIDADE</h1>
-                            <h1>VALOR</h1>
-                    </div>
-                    <div class="menu-image">
-                        <div class="img-header">
-                            <?php 
-                            mysqli_select_db($con,$table_name);
-                            $run = mysqli_query($con,"SELECT product,price,qty,image FROM $column_table_name");
+        <section class="command-open">
+            <div class="itens-display-group">
+                    <div class="menu">
+                        <div class="rotulos">
+                                <h1>PRODUTO</h1>
+                                <h1>QUANTIDADE</h1>
+                                <h1>VALOR</h1>
+                        </div>
+                        <div class="menu-image">
+                            <div class="img-header">
+                                <?php 
+                                mysqli_select_db($con,$table_name);
+                                $run = mysqli_query($con,"SELECT product,price,qty,image FROM $column_table_name");
     
-                            while ($result = mysqli_fetch_assoc($run)) {
-                            ?>
-                            <div class="product-block">
-                                <img src="<?php echo $result['image']; ?>" class="product-image">
-                                <div class="product-details">
-                                    <span class="iten-name"><?php echo $result['product']; ?></span>
-                                    <span class="item-qty"><?php echo $result['qty']; ?> </span>
-                                    <span class="item-price"><?php if($result['price'] == 0){}else{echo $result['price'];} ?></span>
+                                while ($result = mysqli_fetch_assoc($run)) {
+                                ?>
+                                <div class="product-block">
+                                    <img src="<?php echo $result['image']; ?>" class="product-image">
+                                    <div class="product-details">
+                                        <span class="iten-name"><?php echo $result['product']; ?></span>
+                                        <span class="item-qty"><?php echo $result['qty']; ?> </span>
+                                        <span class="item-price"><?php if($result['price'] == 0){}else{echo $result['price'];} ?></span>
+                                    </div>
                                 </div>
-                            </div>
+                                <?php
+                                }
+                                ?>
                             <?php
-                            }
+                            mysqli_select_db($con,$table_name);
+                            $run = mysqli_query($con,"SELECT SUM(price * qty) as total FROM $column_table_name");
+                            $result = mysqli_fetch_assoc($run);
+                            $total = $result['total'];
                             ?>
-                        <?php
-                        mysqli_select_db($con,$table_name);
-                        $run = mysqli_query($con,"SELECT SUM(price * qty) as total FROM $column_table_name");
-                        $result = mysqli_fetch_assoc($run);
-                        $total = $result['total'];
-                        ?>
-                        <div class="buttons">
-                            <button class="add_button"><a href="add_product.php?id=<?php echo $table_id ?>">ADICIONAR</a></button>
+                            <div class="buttons">
+                                <button class="add_button"><a href="add_product.php?id=<?php echo $table_id ?>">ADICIONAR</a></button>
                             <button class="close_comand_button"><a href="close_comand.php?id=<?php echo $table_id?>">FECHAR COMANDA</a></button>
                         </div>
                         <h1 class="total"><?php if($total){

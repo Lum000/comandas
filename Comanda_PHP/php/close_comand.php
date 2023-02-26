@@ -1,5 +1,10 @@
 <?php
 include_once("connect.php");
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 $table_id = $_GET['id'];
 $table_name = 'mesa' . $table_id;
 $column_table_name = $table_name . $table_id;
@@ -24,7 +29,7 @@ while ($row = mysqli_fetch_assoc($run)) {
     $produtos[] = $row['product'];
 }
 if(isset($_POST['fechar'])){
-    if($result['total'] < 0){
+    if($result['total'] <= 0){
         $total = $result['total'];
         mysqli_select_db($con,'backup_mesas');
         mysqli_query($con,"CREATE TABLE `backup_mesas`.`$backup_name` (`id` INT NOT NULL AUTO_INCREMENT , `number` INT NOT NULL , `name` VARCHAR(255) NOT NULL DEFAULT '' , `time` VARCHAR(255) NOT NULL , `products` INT(255), `total` DOUBLE NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
@@ -91,10 +96,10 @@ if(isset($_POST['fechar'])){
                                 <form method="POST" action="close_comand.php?id=<?php echo $table_id ?>">
                                 <div class="input_number">
                                         <label for="valor">Valor que deseja pagar:</label>
-                                        <input type="number" class="input_valor" step="0.01" id="value" name="value" placeholder="0.00" required><br>
+                                        <input type="number" class="input_valor" step="0.01" id="value" name="value" placeholder="0.00"><br>
   
                                         <label for="pago">Valor pago:</label>
-                                        <input type="number" class="input_paid" step="0.01" id="pago" name="pago" placeholder="0.00" required><br><br>
+                                        <input type="number" class="input_paid" step="0.01" id="pago" name="pago" placeholder="0.00"><br><br>
   
                                         <h3> <span class="troco"></span></h3>
                                     </div>
@@ -102,6 +107,7 @@ if(isset($_POST['fechar'])){
                                     <div class="button">
                                         <button class="voltar"><a href="tables.php?id=<?php echo $table_id?>">VOLTAR</a></button>
                                         <input type="submit" class="submit" name="fechar" value="FECHAR COMANDA">
+                                        <input type="submit" class="submit" name="total_fechar" value="PAGAR TOTAL">
                                     </div>
                                 </form>
                             </div>
