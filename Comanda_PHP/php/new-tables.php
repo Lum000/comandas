@@ -65,10 +65,10 @@ else {
         </div>
         <div class="add_product">
             <div class="header_products">
-                <button id="burguer">hamburguer</button>
-                <button id="porcao">PORCAO</button>
-                <button>DIVERSOS</button>
-                <button>bebidas</button>
+                <button id="burguer"><a>hamburguer</a></button>
+                <button id="porcao"><a>PORCAO</a></button>
+                <button><a>DIVERSOS</a></button>
+                <button><a>bebidas</a></button>
             </div>
             <?php 
             mysqli_select_db($con,'produtos');
@@ -95,12 +95,22 @@ else {
     const div1 = document.getElementById('div1');
     const div2 = document.getElementById('div2');
     const container = document.getElementById('span');
-
+    <?php 
+    mysqli_select_db($con,'produtos');
+    $sql = "SELECT * FROM products";
+    $run = mysqli_query($con,$sql);
+    $result = mysqli_fetch_assoc($run);
+    ?>
     burguer.addEventListener('click', function() {
-    const newDiv = document.createElement('div');
-    newDiv.innerHTML = 'Nova div criada';
-    newDiv.style.color = 'red';
-    container.appendChild(newDiv);
+        const newDiv = document.createElement('div');
+        newDiv.innerHTML = `
+    <span id='span' class="product_name"><h2><?php echo $result['product'] ?></h2></span>
+    <span class="product_price"><h3>R$<?php echo $result['price'] ?></h3></span>
+    <input type="hidden" name="id_product">
+`;
+        newDiv.style.color = 'red';
+        container.appendChild(newDiv);
+        burguer.style.backgroundColor = "blue";
 
     });
 

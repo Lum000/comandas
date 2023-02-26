@@ -75,8 +75,20 @@ header button a{
     padding: 15px 5px;
     border-bottom: 2px solid rgb(85, 84, 84);
 }
+.header_products button a{
+    color: black;
+    font-size: 15px;
+    font-weight: 500;
+    font-style: bold;
+}
+.header_products button{
+    border-radius: 15px;
+    border: 0;
+    padding: 10px 5px;
+    background-color:rgb(2, 95, 244)
+}
 .header_table{
-    padding: 13px 0;
+    padding: 22px 5px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     border-bottom: 2px solid rgb(85, 84, 84);
