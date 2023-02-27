@@ -109,9 +109,13 @@ header button a{
 }
 .name_product{
     margin-right: auto;
-    width: 100%;
+    width: 230px;
+    overflow: auto;
     text-align: center;
 
+}
+.name_product span{
+    font-size: 22px;
 }
 .price_product{
     margin-left: auto;
@@ -129,6 +133,7 @@ header button a{
 }
 .qty{
     margin: auto;
+    width: 80px;
 }
 .produto_mesa form{
     display: grid;
@@ -151,4 +156,26 @@ header button a{
     width: fit-content;
     padding: 8px 10px;
     cursor: pointer;
+}
+.dialog_form{
+    text-align:center;
+    position: absolute;
+    bottom: 10%;
+    top:30%;
+    left: 35%;
+    z-index:50;
+    width: 400px;
+    background-color: #FFF6BD;
+    border:2px solid black;
+}
+.header_dialog{
+    border-bottom: 2px solid red;
+    padding: 5px 0;
+}
+.products_dialog{
+    text-align: center;
+    display: grid;
+}
+.total_dialog{
+    justify-content: flex-end;
 }

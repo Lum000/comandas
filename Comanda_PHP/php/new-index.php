@@ -20,8 +20,8 @@ error_reporting(E_ALL);
         <span class="text_logo"><h2>BURCA'S</h2></span>
         <nav class="nav_links">
             <ul>
-                <li><a href="#">Link1</a></li>
-                <li><a href="#">Link2</a></li>
+                <li><a href="new-index.php">Link1</a></li>
+                <li><a href="admin-panel.php">Link2</a></li>
                 <li><a href="#">Link3</a></li>
             </ul>
         </nav>

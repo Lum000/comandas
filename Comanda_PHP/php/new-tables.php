@@ -102,6 +102,7 @@ else {
                 ?>
                 <span>TOTAL = R$ <?php echo $result['total']?></span>
             </div>
+            <button class="dialog" id="dialog">ENCERRAR</button>
         </div>
         <div class="add_product">
   <div class="header_products">
@@ -122,6 +123,33 @@ else {
   <div class="products_add">
   </div>
 </div>
+<dialog id="dialog_form" class="dialog_form">
+    <div class="input">
+        <div class="header_dialog">
+            <span>Mesa : <?php echo $table_id?></span>
+        </div>
+        <div class="products_dialog">
+            <?php
+            mysqli_select_db($con,$table_name);
+            $sql = "SELECT * FROM $column_table_name";
+            $run = mysqli_query($con,$sql);
+            if($run){
+                while($result = mysqli_fetch_assoc($run)){
+                    echo $result['product'];?><br><?php
+                }
+            }
+            ?>
+        </div>
+        <div class="total_dialog">
+            <?php 
+                $run = mysqli_query($con,"SELECT SUM(price * qty) as total FROM $column_table_name");
+                $result = mysqli_fetch_assoc($run);
+                echo $result['total'];
+            ?>
+        </div>
+
+</dialog>
+
 </body>
 <script>
 const burguer = document.getElementById('burguer');
@@ -184,6 +212,15 @@ function fetchProducts(searchParam) {
     })
     .catch(error => console.error(error));
 }
+function cach_products(){
+    console.log('OLA')
+};
+const dialog_form = document.getElementById('dialog_form');
+const button_dialog = document.getElementById('dialog');
+button_dialog.addEventListener("click", function() {
+    console.log('ola');
+    dialog_form.showModal();
+});
 
 </script>
 
