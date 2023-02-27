@@ -93,3 +93,62 @@ header button a{
     grid-template-columns: 1fr 1fr;
     border-bottom: 2px solid rgb(85, 84, 84);
 }
+.product button{
+    border: 0px;
+    border-radius: 10px;
+    background-color: rgb(2, 95, 244);
+    width: fit-content;
+    padding: 8px 10px;
+    cursor: pointer;
+}
+.product button:hover{
+    background-color: rgb(1, 37, 96);
+}
+.product button:active{
+    background-color: white;
+}
+.name_product{
+    margin-right: auto;
+    width: 100%;
+    text-align: center;
+
+}
+.price_product{
+    margin-left: auto;
+    text-align: center;
+    width: 100%;
+}
+.rotulos{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    text-align: center;
+    font-size: 25px ;
+    padding: 5px 30px;
+    color: black;
+}
+.qty{
+    margin: auto;
+}
+.produto_mesa form{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 5px 20px;
+    font-size: 20px;
+    font-weight: 500;
+}
+.total{
+    font-size: 25px;
+    display: flex;
+    padding: 5px 30px;
+    justify-content: flex-end;
+    border-top: 2px solid black;
+}
+.produto_mesa form input{
+    border: 0px;
+    border-radius: 10px;
+    background-color: rgb(2, 95, 244);
+    width: fit-content;
+    padding: 8px 10px;
+    cursor: pointer;
+}
