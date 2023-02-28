@@ -102,7 +102,7 @@ else {
                 ?>
                 <span>TOTAL = R$ <?php echo $result['total']?></span>
             </div>
-            <button class="dialog" id="dialog">ENCERRAR</button>
+            <button class="dialog" id="dialog">PAGAR</button>
         </div>
         <div class="add_product">
   <div class="header_products">
@@ -123,32 +123,43 @@ else {
   <div class="products_add">
   </div>
 </div>
-<dialog id="dialog_form" class="dialog_form">
-    <div class="input">
-        <div class="header_dialog">
-            <span>Mesa : <?php echo $table_id?></span>
-        </div>
-        <div class="products_dialog">
-            <?php
-            mysqli_select_db($con,$table_name);
-            $sql = "SELECT * FROM $column_table_name";
-            $run = mysqli_query($con,$sql);
-            if($run){
-                while($result = mysqli_fetch_assoc($run)){
-                    echo $result['product'];?><br><?php
-                }
-            }
-            ?>
-        </div>
-        <div class="total_dialog">
-            <?php 
-                $run = mysqli_query($con,"SELECT SUM(price * qty) as total FROM $column_table_name");
-                $result = mysqli_fetch_assoc($run);
-                echo $result['total'];
-            ?>
-        </div>
+<dialog id="products-dialog">
+    <div class="header_dialog">
+        <span>Mesa : <?php echo $table_id?></span>
+        <button id="exit">X</button>
+    </div>
+  <form action="pagar_comanda.php" method="POST">
+  <?php
+        mysqli_select_db($con,$table_name);
+        $sql = "SELECT * FROM $column_table_name";
+        $run = mysqli_query($con,$sql);
+        if($run){
+            $dialogs = array(); // criar uma lista vazia
+            while($result = mysqli_fetch_assoc($run)){
+                // criar o elemento dialog e adicionar à lista
+            $dialog = '<dialog id="dialog'.$result['id'].'">';
+            $dialog .= '<span>Produto: '.$result['product'].'</span>';
+            $dialog .= '<span>Preço: R$ '.$result['price'].'</span>';
+            $dialog .= '<label for="people">Dividir em:</label>';
+            $dialog .= '<select name="people" id="people">';
+            $dialog .= '<option value="1">1</option>';
+            $dialog .= '<option value="2">2</option>';
+            $dialog .= '<option value="3">3</option>';
+            $dialog .= '<option value="4">4</option>';
+            $dialog .= '<option value="5">5</option>';
+            $dialog .= '</select>';
+            $dialog .= '<input type="hidden" name="id_send" value="'.$result['id'].'">';
+            $dialog .= '<input type="button" value="Pagar" onclick="pagarProduto('.$result['id'].')">';
+            $dialog .= '</dialog>';
+            array_push($dialogs, $dialog);
+        }
+        foreach ($dialogs as $dialog) {
+            echo $dialog; // exibir cada diálogo na página
+        }
+    }
+    ?>
+    </form>
 
-</dialog>
 
 </body>
 <script>
@@ -215,12 +226,16 @@ function fetchProducts(searchParam) {
 function cach_products(){
     console.log('OLA')
 };
-const dialog_form = document.getElementById('dialog_form');
-const button_dialog = document.getElementById('dialog');
-button_dialog.addEventListener("click", function() {
-    console.log('ola');
-    dialog_form.showModal();
+
+//dialog pop up
+
+var showProductsButton = document.querySelector('#dialog');
+var productsDialog = document.querySelector('#products-dialog');
+
+showProductsButton.addEventListener('click', function() {
+  productsDialog.showModal();
 });
+
 
 </script>
 
