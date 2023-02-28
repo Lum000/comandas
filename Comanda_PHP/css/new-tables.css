@@ -157,14 +157,14 @@ header button a{
     padding: 8px 10px;
     cursor: pointer;
 }
-.dialog_form{
+dialog{
     text-align:center;
     position: absolute;
     bottom: 10%;
-    top:30%;
+    top:10%;
     left: 35%;
     z-index:50;
-    width: 400px;
+    width: 700;
     background-color: #FFF6BD;
     border:2px solid black;
 }
@@ -172,10 +172,10 @@ header button a{
     border-bottom: 2px solid red;
     padding: 5px 0;
 }
-.products_dialog{
-    text-align: center;
-    display: grid;
+.product_dialog span{
+    font-size: 18px;
 }
-.total_dialog{
-    justify-content: flex-end;
+.product_dialog{
+    border-bottom: 2px solid black;
+    padding: 10px;
 }
