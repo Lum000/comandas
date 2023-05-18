@@ -8,10 +8,26 @@ $table_id = $_GET['id'];
 
 
 //pegar nome da mesa da url
-mysqli_select_db($con,'mesas');
-if(isset($_GET['name'])){
+mysqli_select_db($con, 'mesas');
+if (isset($_GET['name'])) {
     $name = $_GET['name'];
-    mysqli_query($con,"UPDATE mesas SET nome=$name WHERE id=$table_id");
+    $sql = "UPDATE mesas SET nome=? WHERE id=?";
+    $stmt = mysqli_prepare($con, $sql);
+    
+    // Verifica se a preparação da declaração teve sucesso
+    if ($stmt) {
+        // Define os valores dos parâmetros
+        mysqli_stmt_bind_param($stmt, 'si', $name, $table_id);
+
+        // Executa a declaração preparada
+        mysqli_stmt_execute($stmt);
+
+        // Fecha a declaração preparada
+        mysqli_stmt_close($stmt);
+    } else {
+        // Se houver um erro na preparação da declaração
+        echo "Erro na preparação da declaração: " . mysqli_error($con);
+    }
 }
 else{
     //pegar nome do banco
