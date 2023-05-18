@@ -5,8 +5,6 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 $table_id = $_GET['id'];
 
-
-
 //pegar nome da mesa da url
 mysqli_select_db($con, 'mesas');
 if (isset($_GET['name'])) {
@@ -141,7 +139,7 @@ else {
                 ?>
                 <span>TOTAL = R$ <?php echo $result['total']?></span>
             </div>
-            <button class="dialog_ola" id="ola" onclick="window.location.href='new-tables.php?id=<?php echo $table_id ?>&pagar=true'">PAGAR</button>
+            <button class="dialog_ola" id="ola" onclick="openPopup()">PAGAR</button>
         </div>
         <div class="add_product">
   <div class="header_products">
@@ -200,6 +198,21 @@ else {
     <div class="header_dialog">
         <span>Mesa : <?php echo $table_id?></span>
         <button id="exit">X</button>
+    </div>
+    <div class="products_dialog">
+        <span>PRODUTOS: 
+        <?php
+        mysqli_select_db($con,$table_name);
+        $run = mysqli_query($con,"SELECT * FROM $column_table_name");
+        $result = mysqli_fetch_assoc($run);
+        if($result){
+            while ($result['product']){
+                echo $result['product'] + "<br>";
+            }
+        }
+        ?>
+
+        </span>
     </div>
   <form action="pagar_comanda.php" method="POST">
   <?php
@@ -331,6 +344,18 @@ function altername(){
     window.location.href = `new-tables.php?id=<?php echo $table_id?>&name=${name}`;
 }
 
+
+function openPopup() {
+    const dialog = document.getElementById("products-dialog");
+    dialog.showModal();
+    }
+
+function closePopup() {
+    const dialog = document.getElementById("products-dialog");
+        dialog.close();
+    }
+
+    document.getElementById("exit").addEventListener("click", closePopup);
 </script>
 
 </html>

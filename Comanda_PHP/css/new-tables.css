@@ -179,3 +179,10 @@ dialog{
     border-bottom: 2px solid black;
     padding: 10px;
 }
+.popup{
+    left: 50%;
+    width: 500px;
+    height: 500px;
+    justify-content: center;
+    align-items: center;
+}
