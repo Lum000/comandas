@@ -5,11 +5,20 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 $table_id = $_GET['id'];
 
-//pegar nome da mesa
+
+
+//pegar nome da mesa da url
 mysqli_select_db($con,'mesas');
-$run = mysqli_query($con,"SELECT nome FROM mesas WHERE id = $table_id");
-if($result = mysqli_fetch_assoc($run)){
-    $name = $result['nome'];
+if(isset($_GET['name'])){
+    $name = $_GET['name'];
+    mysqli_query($con,"UPDATE mesas SET nome=$name WHERE id=$table_id");
+}
+else{
+    //pegar nome do banco
+    $run = mysqli_query($con,"SELECT nome FROM mesas WHERE id = $table_id");
+    if($result = mysqli_fetch_assoc($run)){
+        $name = $result['nome'];
+    }
 }
 //criar banco de dados
 $table_name = 'mesa' . $table_id;
@@ -21,7 +30,7 @@ if(mysqli_query($con,$sql)){
     if(mysqli_query($con,$sql)){
         if(mysqli_query($con,$sql)){
             mysqli_select_db($con,$table_name);
-            $sql = "CREATE TABLE IF NOT EXISTS $table_name.$column_table_name (`id` INT NOT NULL , `product` VARCHAR(255) NULL , `price` DOUBLE  NULL , `total` DOUBLE  NULL,`qty` INT Default 1) ENGINE = InnoDB;";
+            $sql = "CREATE TABLE IF NOT EXISTS $table_name.$column_table_name (`id` INT NOT NULL , `product` VARCHAR(255) NULL , `price` DOUBLE  NULL , `total` DOUBLE  NULL,`qty` INT Default 1, `image` VARCHAR(255)) ENGINE = InnoDB;";
             mysqli_select_db($con,$table_name);
             mysqli_query($con,$sql);
         }
@@ -62,7 +71,21 @@ else {
         <div class="table">
             <div class="header_table">
                 <span class="table_number"><h1>Mesa : <?php echo $table_id ?></h1></span>
-                <span class="table_name"><h1>Nome : <?php echo $name ?></h1>
+                <span class="table_name"><h1>Nome : <?php
+                mysqli_select_db($con,'mesas');
+                $run = mysqli_query($con,"SELECT nome FROM mesas WHERE id = $table_id");
+                $result = mysqli_fetch_assoc($run);
+                if($result['nome'] != ''){
+                    echo $result['nome'];
+                }
+                else{
+                    ?>
+                    <input type='text' name='name' id="table_name_alter" placeholder='NOME DA MESA'>
+                    <button type='submit' name='create_name' onclick='altername()'>enviar</button>
+                    <?php
+                };
+                mysqli_select_db($con,$table_name);
+                ?></h1>
             </div>
             <div class="rotulos">
                     <span>PRODUTO</span>
@@ -102,7 +125,7 @@ else {
                 ?>
                 <span>TOTAL = R$ <?php echo $result['total']?></span>
             </div>
-            <button class="dialog" id="dialog">PAGAR</button>
+            <button class="dialog_ola" id="ola" onclick="window.location.href='new-tables.php?id=<?php echo $table_id ?>&pagar=true'">PAGAR</button>
         </div>
         <div class="add_product">
   <div class="header_products">
@@ -111,14 +134,48 @@ else {
     <button id="diversos"><a>DIVERSOS</a></button>
     <button id="bebidas"><a>BEBIDAS</a></button>
   </div>
-  <?php 
-  mysqli_select_db($con,'produtos');
-  $sql = "SELECT * FROM products";
-  $run = mysqli_query($con,$sql);
-  $products_array = array();
-  while($result = mysqli_fetch_assoc($run)){
-      $products_array[] = $result;
+  <?php
+  if(isset($_GET['pagar'])){
+    mysqli_select_db($con,$table_name);
+    $sql = "SELECT * FROM $column_table_name";
+    $run = mysqli_query($con,$sql);
+    while($result = mysqli_fetch_assoc($run)){?>
+    <div class="produto_mesa">
+        <form action="pagar_comanda.php" method="POST">
+            <div class="name_product">
+                <span><?php echo $result['product'] ?></span>   
+            </div>
+            <div class="qty">
+                <input type="hidden" name="item_id" value="<?php echo $result['id']?>">
+                <input type="submit" name="more" value="+">
+                <span><?php echo $result['qty']?></span>
+                <input type="submit" name="minus" value="-">
+                <input type="hidden" name="table_id" value="<?php echo $table_id?>">
+            </div>
+            <div class="price_product">
+                <span> R$ <?php echo $result['price'] ?></span>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" name="paid" value="<?php echo $result['id'] ?>">
+                <label for="paid">PAGAR</label>
+            </div>
+        </form>
+    </div>
+    <?php
+    }
+    ?>
+    <button id="pagar-btn">OLA</button>
+    <?php
   }
+  else{
+    mysqli_select_db($con,'produtos');
+    $sql = "SELECT * FROM products";
+    $run = mysqli_query($con,$sql);
+    $products_array = array();
+    while($result = mysqli_fetch_assoc($run)){
+        $products_array[] = $result;
+    }
+}
   ?>
   <div class="products_add">
   </div>
@@ -173,27 +230,30 @@ burguer.addEventListener('click', function() {
   fetchProducts('lanche'); // chama a função para obter produtos
   burguer.style.backgroundColor = "red";
   porcao.style.backgroundColor = "rgb(2, 95, 244)";
-  
+    bebidas.style.backgroundColor = "rgb(2, 95, 244)";
+  diversos.style.backgroundColor = "rgb(2, 95, 244)";
 });
 
 porcao.addEventListener('click', function() {
   fetchProducts('porcao'); // chama a função para obter produtos
   burguer.style.backgroundColor = "rgb(2, 95, 244)";
   porcao.style.backgroundColor = "red";
+    bebidas.style.backgroundColor = "rgb(2, 95, 244)";
+  diversos.style.backgroundColor = "rgb(2, 95, 244)";
 });
 bebidas.addEventListener('click', function() {
   fetchProducts('bebidas'); // chama a função para obter produtos
   burguer.style.backgroundColor = "rgb(2, 95, 244)";
   porcao.style.backgroundColor = "rgb(2, 95, 244)";
   bebidas.style.backgroundColor = "red";
-  diversos.style.backgroundColor = "rgb(2, 95, 244)"
+  diversos.style.backgroundColor = "rgb(2, 95, 244)";
 });
 diversos.addEventListener('click', function() {
   fetchProducts('diversos'); // chama a função para obter produtos
   burguer.style.backgroundColor = "rgb(2, 95, 244)";
   porcao.style.backgroundColor = "rgb(2, 95, 244)";
   bebidas.style.backgroundColor = "rgb(2, 95, 244)";
-  diversos.style.backgroundColor = "red"
+  diversos.style.backgroundColor = "red";
 });
 
 // Função para obter produtos com base no parâmetro de pesquisa
@@ -232,10 +292,28 @@ function cach_products(){
 var showProductsButton = document.querySelector('#dialog');
 var productsDialog = document.querySelector('#products-dialog');
 
-showProductsButton.addEventListener('click', function() {
-  productsDialog.showModal();
-});
+const pagarBtn = document.getElementById('pagar-btn');
+    
+    // Adicione um ouvinte de evento para o clique do botão
+    pagarBtn.addEventListener('click', function() {
+        // Selecione todos os checkboxes com nome "paid"
+        const checkboxes = document.querySelectorAll('input[name="paid"]:checked');
+        // Crie um array para armazenar os valores dos IDs
+        const ids = [];
+        // Adicione cada valor de ID ao array
+        checkboxes.forEach(function(checkbox) {
+            ids.push(checkbox.value);
+        });
+        // Crie a URL com os IDs concatenados
+        const url = `pagar_comanda.php?id=<?php echo $table_id?>&id_product=${ids.join(',')}`;
+        // Redirecione para a nova URL
+        window.location.href = url;
+    });
 
+function altername(){
+    name = document.getElementById('table_name_alter').value;
+    window.location.href = `new-tables.php?id=<?php echo $table_id?>&name=${name}`;
+}
 
 </script>
 

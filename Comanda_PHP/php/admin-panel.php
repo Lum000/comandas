@@ -49,6 +49,17 @@ include_once('connect.php');
         <?php
         }
         ?>
+        <div class="crate-table">
+            <input type="number" name="numbersoftables" id="numberstables">
+            <label for="numberstable">Numero de mesas que deseja criar</label>
+            <button type="submit" name="create" id="4" value="create" onclick=generateTables()>Criar</button>
+        </div>
     </div>
+    <script>
+        function generateTables(){
+            tables = document.getElementById('numberstables').value;
+            window.location.href = "generate_tables.php?id=" + encodeURIComponent(tables);
+        }
+    </script>
 </body>
 </html>

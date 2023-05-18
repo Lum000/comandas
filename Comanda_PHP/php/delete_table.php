@@ -10,7 +10,7 @@ if($table_id = $_GET['id']){
         $sql = "DROP DATABASE $table_name";
         if(mysqli_query($con,$sql)){
             mysqli_select_db($con,'mesas');
-            $run = mysqli_query($con,"UPDATE mesas SET cor = 0 WHERE id = $table_id");
+            $run = mysqli_query($con,"UPDATE mesas SET cor = 0, nome = '' WHERE id = $table_id");
             if($run){
                 header('location:new-index.php');
             }
