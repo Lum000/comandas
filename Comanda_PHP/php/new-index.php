@@ -4,6 +4,12 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+$run = mysqli_query($con,"CREATE DATABASE IF NOT EXISTS mesas");
+if($run){
+    mysqli_select_db($con,'mesas');
+    mysqli_query($con,"CREATE TABLE IF NOT EXISTS mesas (`id` INT NOT NULL,`nome` VARCHAR(255) NULL,`cor` INT DEFAULT 0)");
+}
+
 ?>
 
 <!DOCTYPE html>
