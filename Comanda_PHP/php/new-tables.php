@@ -143,10 +143,10 @@ else {
         </div>
         <div class="add_product">
   <div class="header_products">
-    <button id="burguer" data-search="lanche"><a>HAMBURGUER</a></button>
-    <button id="porcao" data-search="porcao"><a>PORCAO</a></button>
-    <button id="diversos"><a>DIVERSOS</a></button>
-    <button id="bebidas"><a>BEBIDAS</a></button>
+    <button id="burguer" data-search="lanche">HAMBURGUER</button>
+    <button id="porcao" data-search="porcao">PORCAO</button>
+    <button id="diversos">DIVERSOS</button>
+    <button id="bebidas">BEBIDAS</button>
   </div>
   <?php
   if(isset($_GET['pagar'])){
@@ -304,7 +304,7 @@ function fetchProducts(searchParam) {
           <span class="product_price"><h3>R$ ${product.price}</h3></span>
           <input type="hidden" name="id_product" value="${product.id}">
           <input type="hidden" name="table_id" value="<?php echo $table_id?>">
-          <button type="submit" name="add">+</button>
+          <input type="submit" name="add" value="+">
         </form>
         `;
         productsDiv.appendChild(productDiv);
