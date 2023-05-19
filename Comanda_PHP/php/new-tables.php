@@ -143,8 +143,8 @@ else {
         </div>
         <div class="add_product">
   <div class="header_products">
-    <button id="burguer" data-search="lanche">HAMBURGUER</button>
-    <button id="porcao" data-search="porcao">PORCAO</button>
+    <button id="burguer">HAMBURGUER</button>
+    <button id="porcao" >PORCAO</button>
     <button id="diversos">DIVERSOS</button>
     <button id="bebidas">BEBIDAS</button>
   </div>
@@ -255,36 +255,38 @@ const bebidas = document.getElementById('bebidas');
 const diversos = document.getElementById('diversos');
 
 // Adicione um ouvinte de evento de clique para cada botão
-burguer.addEventListener('click', function() {
-  fetchProducts('lanche'); // chama a função para obter produtos
-  burguer.style.backgroundColor = "red";
-  porcao.style.backgroundColor = "rgb(2, 95, 244)";
-    bebidas.style.backgroundColor = "rgb(2, 95, 244)";
-  diversos.style.backgroundColor = "rgb(2, 95, 244)";
-});
+function addEventListenersToButtons(){
+    burguer.addEventListener('click', function() {
+        fetchProducts('lanche'); // chama a função para obter produtos
+        burguer.style.backgroundColor = "red";
+        porcao.style.backgroundColor = "rgb(2, 95, 244)";
+        bebidas.style.backgroundColor = "rgb(2, 95, 244)";
+        diversos.style.backgroundColor = "rgb(2, 95, 244)";
+    });
 
-porcao.addEventListener('click', function() {
-  fetchProducts('porcao'); // chama a função para obter produtos
-  burguer.style.backgroundColor = "rgb(2, 95, 244)";
-  porcao.style.backgroundColor = "red";
-    bebidas.style.backgroundColor = "rgb(2, 95, 244)";
-  diversos.style.backgroundColor = "rgb(2, 95, 244)";
-});
-bebidas.addEventListener('click', function() {
-  fetchProducts('bebidas'); // chama a função para obter produtos
-  burguer.style.backgroundColor = "rgb(2, 95, 244)";
-  porcao.style.backgroundColor = "rgb(2, 95, 244)";
-  bebidas.style.backgroundColor = "red";
-  diversos.style.backgroundColor = "rgb(2, 95, 244)";
-});
-diversos.addEventListener('click', function() {
-  fetchProducts('diversos'); // chama a função para obter produtos
-  burguer.style.backgroundColor = "rgb(2, 95, 244)";
-  porcao.style.backgroundColor = "rgb(2, 95, 244)";
-  bebidas.style.backgroundColor = "rgb(2, 95, 244)";
-  diversos.style.backgroundColor = "red";
-});
-
+    porcao.addEventListener('click', function() {
+        fetchProducts('porcao'); // chama a função para obter produtos
+        burguer.style.backgroundColor = "rgb(2, 95, 244)";
+        porcao.style.backgroundColor = "red";
+        bebidas.style.backgroundColor = "rgb(2, 95, 244)";
+        diversos.style.backgroundColor = "rgb(2, 95, 244)";
+    });
+    bebidas.addEventListener('click', function() {
+        fetchProducts('bebidas'); // chama a função para obter produtos
+        burguer.style.backgroundColor = "rgb(2, 95, 244)";
+        porcao.style.backgroundColor = "rgb(2, 95, 244)";
+        bebidas.style.backgroundColor = "red";
+        diversos.style.backgroundColor = "rgb(2, 95, 244)";
+    });
+    diversos.addEventListener('click', function() {
+    fetchProducts('diversos'); // chama a função para obter produtos
+        burguer.style.backgroundColor = "rgb(2, 95, 244)";
+        porcao.style.backgroundColor = "rgb(2, 95, 244)";
+        bebidas.style.backgroundColor = "rgb(2, 95, 244)";
+        diversos.style.backgroundColor = "red";
+    });
+}
+addEventListenersToButtons();
 // Função para obter produtos com base no parâmetro de pesquisa
 function fetchProducts(searchParam) {
   const productsDiv = document.querySelector('.products_add');
@@ -345,15 +347,15 @@ function altername(){
 }
 
 
-function openPopup() {
+function openPopup(){
     const dialog = document.getElementById("products-dialog");
     dialog.showModal();
-    }
+}
 
 function closePopup() {
     const dialog = document.getElementById("products-dialog");
         dialog.close();
-    }
+}
 
     document.getElementById("exit").addEventListener("click", closePopup);
 </script>
